@@ -31,7 +31,8 @@ const callSendAPI = function(messageData) {
         resolve();
       } else {
         console.error("Unable to send message.");
-        console.error(response);
+        // console.error(response);
+        console.log(response.statusCode);
         console.error(error);
         reject();
       }
@@ -58,11 +59,31 @@ const sendSeenMessage = function(id) {
   return callSendAPI(messageData);
 };
 
+const sendButtonMessage = function (id, text, buttons) {
+  console.log(id, text, buttons)
+  const messageData = {
+    recipient: {id},
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text,
+          buttons
+        }
+      }
+    }
+  };
+
+  return callSendAPI(messageData);
+};
+
 
 module.exports = {
   sendGenericMessage,
   sendTextMessage,
   sendTypingMessage,
   sendSeenMessage,
+  sendButtonMessage,
   callSendAPI
 };

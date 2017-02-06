@@ -5,9 +5,11 @@ const { sendTextMessage, sendTypingMessage, sendSeenMessage } = require('./send.
 const { delay } = require('../utils/timing');
 
 module.exports = function handleUpdate(event) {
+  sendSeenMessage(event.sender.id);
+
   getLatestLocation().then(location => {
     delay(.5, 1).then(() => {
-      sendSeenMessage(event.sender.id);
+      sendTypingMessage(event.sender.id);
 
       delay(1, 2)
       .then(() => sendTextMessage(event.sender.id, "Sure thing! Let me check for you."))

@@ -1,6 +1,7 @@
 const handleUpdate = require('./update.handler');
 const handleHelp = require('./help.handler');
 const handleUnknown = require('./unknown.handler');
+const handleGreeting = require('./greeting.handler');
 
 const handleIncomingMessage = function (req, res) {
   var data = req.body;
@@ -31,12 +32,17 @@ const receivedMessage = function(event) {
   const {text, attachments} = event.message;
 
   if (text) {
-    switch (text) {
+    switch (text.toLowerCase()) {
       case 'update':
         handleUpdate(event);
         break;
       case 'help' :
         handleHelp(event);
+        break;
+      case 'hello':
+      case 'hi':
+      case 'hey':
+        handleGreeting(event);
         break;
       default:
         handleUnknown(event);
