@@ -2,7 +2,7 @@ import { wit, findOrCreateSession, sessions } from './wit';
 
 export const handleIncomingMessage = (req, res) => {
   const data = req.body;
-
+  
   // Make sure this is a page subscription
   if (data.object === 'page') {
 
@@ -21,6 +21,7 @@ export const handleIncomingMessage = (req, res) => {
             // Let's reply with an automatic message
             // TODO Send Error Message
           } else if (text) {
+
             wit.runActions(
               sessionId, // the user's current session
               text, // the user's message
@@ -37,6 +38,7 @@ export const handleIncomingMessage = (req, res) => {
             })
           }
         } else {
+          // TODO Handle This Case
           console.log('received event', JSON.stringify(event));
         }
       });

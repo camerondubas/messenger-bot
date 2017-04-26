@@ -2,16 +2,14 @@
 FROM node:7.9.0
 LABEL maintainer="camerondubas@gmail.com"
 
-# Set environment variables for Node
-#ENV NODE_ENV production
-
 # Make directory for the app
-RUN mkdir /usr/src/app
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+COPY package.json /usr/src/app/
+RUN npm install
 # Copy the app code
 COPY . /usr/src/app/
-RUN npm set progress=false && npm install
 
 # Start the server
 CMD ["npm", "run", "start"]
