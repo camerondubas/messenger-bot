@@ -1,5 +1,4 @@
-
-module.exports = {
+export default {
 'thunderstorm with light rain': '⛈',
 'thunderstorm with rain': '⛈',
 'thunderstorm with heavy rain': '⛈',

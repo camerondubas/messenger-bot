@@ -1,22 +1,52 @@
 {
   "name": "messenger-bot",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "babel src --out-dir dist && nodemon dist/index.js",
+    "dev": "babel src --out-dir dist --source-maps --watch & nodemon dist/index.js",
     "build": "docker build -t camerondubas/messenger-bot .",
-    "push": "docker push camerondubas/messenger-bot"
+    "push": "docker push camerondubas/messenger-bot",
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Cameron Dubas <camerondubas@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.0",
     "express": "^4.14.1",
     "moment": "^2.17.1",
     "node-emoji": "^1.5.1",
     "node-geocoder": "^3.16.0",
+    "node-wit": "^4.2.0",
     "openweather-apis": "^3.0.2",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^19.0.0",
+    "babel-preset-env": "^1.4.0",
+    "jest": "^19.0.2"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/coverage/**",
+      "!**/dist/**"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "testEnvironment": "node"
   }
 }
