@@ -1,13 +1,7 @@
-const request = require('request');
+import request from 'request';
 const PAGE_TOKEN = 'EAAbFVcGDAgcBAK5ZA9G0gxucZB6VlIUGp0aAVMSJO539timcCZC4PV5ZCr7w7asrGfarFp6E9ougbdctiySf8oVatj62bnjnK8YZArELBGJhjJ9QRzwACwqZC4ExVcrjicoRj5FNFm0DAjRO2bRerUZCDgTGaAI8vSDSNPbsx7a2gZDZD';
 
-const sendGenericMessage = function(recipientId, messageText) {
-  // To be expanded in later sections
-  sendTextMessage(recipientId, "A generic message");
-};
-
-
-const sendTextMessage = function(id, text) {
+export const sendTextMessage = function(id, text) {
   const messageData = {
     recipient: {id},
     message: {text}
@@ -16,7 +10,7 @@ const sendTextMessage = function(id, text) {
   return callSendAPI(messageData);
 };
 
-const callSendAPI = function(messageData) {
+export const callSendAPI = function(messageData) {
   return new Promise((resolve, reject) => {
     request({
       uri: 'https://graph.facebook.com/v2.6/me/messages',
@@ -31,7 +25,6 @@ const callSendAPI = function(messageData) {
         resolve();
       } else {
         console.error("Unable to send message.");
-        // console.error(response);
         console.log(response.statusCode);
         console.error(error);
         reject();
@@ -41,7 +34,7 @@ const callSendAPI = function(messageData) {
 
 };
 
-const sendTypingMessage = function(id) {
+export const sendTypingMessage = function(id) {
   const messageData = {
     recipient: {id},
     sender_action: 'typing_on'
@@ -50,7 +43,7 @@ const sendTypingMessage = function(id) {
   return callSendAPI(messageData);
 };
 
-const sendSeenMessage = function(id) {
+export const sendSeenMessage = function(id) {
   const messageData = {
     recipient: {id},
     sender_action: 'mark_seen'
@@ -59,7 +52,7 @@ const sendSeenMessage = function(id) {
   return callSendAPI(messageData);
 };
 
-const sendButtonMessage = function (id, text, buttons) {
+export const sendButtonMessage = function (id, text, buttons) {
   console.log(id, text, buttons)
   const messageData = {
     recipient: {id},
@@ -76,14 +69,4 @@ const sendButtonMessage = function (id, text, buttons) {
   };
 
   return callSendAPI(messageData);
-};
-
-
-module.exports = {
-  sendGenericMessage,
-  sendTextMessage,
-  sendTypingMessage,
-  sendSeenMessage,
-  sendButtonMessage,
-  callSendAPI
 };

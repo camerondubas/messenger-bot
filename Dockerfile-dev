@@ -3,7 +3,8 @@ FROM node:7.9.0
 LABEL maintainer="camerondubas@gmail.com"
 
 # Set environment variables for Node
-#ENV NODE_ENV production
+# Commented!
+# ENV NODE_ENV production
 
 # Make directory for the app
 RUN mkdir /usr/src/app
@@ -14,6 +15,6 @@ COPY . /usr/src/app/
 RUN npm set progress=false && npm install
 
 # Start the server
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
 
 EXPOSE 3000
