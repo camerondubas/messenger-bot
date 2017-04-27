@@ -9,7 +9,7 @@
     "build": "docker build -t camerondubas/messenger-bot .",
     "push": "docker push camerondubas/messenger-bot",
     "test": "jest",
-    "test-coverage": "jest --coverage"
+    "test:coverage": "jest --coverage"
   },
   "author": "Cameron Dubas <camerondubas@gmail.com>",
   "license": "MIT",

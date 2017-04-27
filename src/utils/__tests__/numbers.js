@@ -1,4 +1,4 @@
-import { randomNumberInRange } from './numbers';
+import { randomNumberInRange } from '../numbers';
 
 describe('Number Utils', () => {
 

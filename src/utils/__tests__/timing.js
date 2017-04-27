@@ -1,9 +1,9 @@
-import { delay } from './timing';
+import { delay } from '../timing';
 
 describe('Timing Utils', () => {
   describe('delay', () => {
 
-    xtest('resolve after one second', () => {
+    test('resolve after one second', () => {
       jest.useFakeTimers();
 
       const fn = delay(1,1);

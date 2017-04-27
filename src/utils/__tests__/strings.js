@@ -1,4 +1,4 @@
-import {removeLineBreaks, removeWhitespace, toTitleCase} from './strings';
+import {removeLineBreaks, removeWhitespace, toTitleCase} from '../strings';
 
 
 describe('String Utils', () => {

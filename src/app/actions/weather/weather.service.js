@@ -1,5 +1,6 @@
 import request from 'request';
 import { removeLineBreaks, removeWhitespace } from '../../../utils/strings';
+
 const OPEN_WEATHER_MAP_API_KEY = 'c2d45ae01e9ba02b3e076ddb6ff07f9e';
 
 export const getWeather = function(location) {
@@ -11,7 +12,7 @@ export const getWeather = function(location) {
       if (!error && response.statusCode == 200) {
         let weatherData = JSON.parse(body);
         resolve(weatherData.list);
-        
+
       } else if (error) {
         reject(error);
 
