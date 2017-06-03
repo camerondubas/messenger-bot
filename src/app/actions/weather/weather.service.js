@@ -1,7 +1,7 @@
 import request from 'request';
 import { removeLineBreaks, removeWhitespace } from '../../../utils/strings';
 
-const OPEN_WEATHER_MAP_API_KEY = 'c2d45ae01e9ba02b3e076ddb6ff07f9e';
+const OPEN_WEATHER_MAP_API_KEY = process.env.OPEN_WEATHER_MAP_API_KEY;
 
 export const getWeather = function(location) {
   return new Promise((resolve, reject) => {

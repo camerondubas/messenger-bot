@@ -2,7 +2,7 @@ import { wit, findOrCreateSession, sessions } from './wit';
 
 export const handleIncomingMessage = (req, res) => {
   const data = req.body;
-  
+
   // Make sure this is a page subscription
   if (data.object === 'page') {
 

@@ -1,5 +1,5 @@
 import request from 'request';
-const PAGE_TOKEN = 'EAAbFVcGDAgcBAK5ZA9G0gxucZB6VlIUGp0aAVMSJO539timcCZC4PV5ZCr7w7asrGfarFp6E9ougbdctiySf8oVatj62bnjnK8YZArELBGJhjJ9QRzwACwqZC4ExVcrjicoRj5FNFm0DAjRO2bRerUZCDgTGaAI8vSDSNPbsx7a2gZDZD';
+const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
 
 export const sendTextMessage = function(id, text) {
   const messageData = {
@@ -10,11 +10,11 @@ export const sendTextMessage = function(id, text) {
   return callSendAPI(messageData);
 };
 
-export const callSendAPI = function(messageData) {
+const callSendAPI = function(messageData) {
   return new Promise((resolve, reject) => {
     request({
       uri: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: { access_token: PAGE_TOKEN },
+      qs: { access_token: FB_PAGE_TOKEN },
       method: 'POST',
       json: messageData
 
@@ -47,25 +47,6 @@ export const sendSeenMessage = function(id) {
   const messageData = {
     recipient: {id},
     sender_action: 'mark_seen'
-  };
-
-  return callSendAPI(messageData);
-};
-
-export const sendButtonMessage = function (id, text, buttons) {
-  console.log(id, text, buttons)
-  const messageData = {
-    recipient: {id},
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text,
-          buttons
-        }
-      }
-    }
   };
 
   return callSendAPI(messageData);

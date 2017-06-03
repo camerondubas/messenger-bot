@@ -1,5 +1,6 @@
 import { Wit, log } from 'node-wit';
-const WIT_ACCESS_TOKEN = 'HSHZU5FHLSPNUVL5J2G2HDBFIXFFZTXR';
+
+const WIT_ACCESS_TOKEN = process.env.WIT_ACCESS_TOKEN;
 
 import actions from './actions/index';
 

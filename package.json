@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "babel src --out-dir dist && nodemon dist/index.js",
-    "dev": "babel src --out-dir dist --source-maps --watch & nodemon dist/index.js",
+    "dev": "npm install && babel src --out-dir dist --source-maps --watch & node -r dotenv/config dist/index.js",
     "build": "docker build -t camerondubas/messenger-bot .",
     "push": "docker push camerondubas/messenger-bot",
     "test": "jest",
@@ -15,14 +15,15 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "moment": "^2.17.1",
     "node-emoji": "^1.5.1",
     "node-geocoder": "^3.16.0",
     "node-wit": "^4.2.0",
+    "nodemon": "^1.11.0",
     "openweather-apis": "^3.0.2",
-    "request": "^2.79.0",
-    "nodemon": "^1.11.0"
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -34,6 +35,7 @@
     "verbose": true,
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
+      "!**/index.js",
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/coverage/**",
@@ -41,6 +43,9 @@
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
+      "/dist/"
+    ],
+    "modulePathIgnorePatterns": [
       "/dist/"
     ],
     "coverageReporters": [
