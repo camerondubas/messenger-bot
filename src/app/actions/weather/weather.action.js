@@ -9,6 +9,10 @@ export default function({context, entities}) {
       resolve(context);
     } else {
       geocoder.geocode(entities.location[0].value, (err, res) => {
+        if (err) {
+          // TODO: proper error handling
+          throw err
+        }
         getWeather({latitude: res[0].latitude, longitude: res[0].longitude}).then(
           data => {
             context.weather = formatMessage(data, res[0]);
